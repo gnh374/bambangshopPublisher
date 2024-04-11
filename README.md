@@ -48,28 +48,28 @@ You can install Postman via this website: https://www.postman.com/downloads/
     (You might want to use `cargo check` if you only need to verify your work without running the app.)
 
 ## Mandatory Checklists (Publisher)
--   [ ] Clone https://gitlab.com/ichlaffterlalu/bambangshop to a new repository.
+-   [v] Clone https://gitlab.com/ichlaffterlalu/bambangshop to a new repository.
 -   **STAGE 1: Implement models and repositories**
-    -   [ ] Commit: `Create Subscriber model struct.`
-    -   [ ] Commit: `Create Notification model struct.`
-    -   [ ] Commit: `Create Subscriber database and Subscriber repository struct skeleton.`
-    -   [ ] Commit: `Implement add function in Subscriber repository.`
-    -   [ ] Commit: `Implement list_all function in Subscriber repository.`
-    -   [ ] Commit: `Implement delete function in Subscriber repository.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
+    -   [v] Commit: `Create Subscriber model struct.`
+    -   [v] Commit: `Create Notification model struct.`
+    -   [v] Commit: `Create Subscriber database and Subscriber repository struct skeleton.`
+    -   [v] Commit: `Implement add function in Subscriber repository.`
+    -   [v] Commit: `Implement list_all function in Subscriber repository.`
+    -   [v] Commit: `Implement delete function in Subscriber repository.`
+    -   [v] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 -   **STAGE 2: Implement services and controllers**
-    -   [ ] Commit: `Create Notification service struct skeleton.`
-    -   [ ] Commit: `Implement subscribe function in Notification service.`
-    -   [ ] Commit: `Implement subscribe function in Notification controller.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification service.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification controller.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
+    -   [v] Commit: `Create Notification service struct skeleton.`
+    -   [v] Commit: `Implement subscribe function in Notification service.`
+    -   [v] Commit: `Implement subscribe function in Notification controller.`
+    -   [v] Commit: `Implement unsubscribe function in Notification service.`
+    -   [v] Commit: `Implement unsubscribe function in Notification controller.`
+    -   [v] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
 -   **STAGE 3: Implement notification mechanism**
-    -   [ ] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
-    -   [ ] Commit: `Implement notify function in Notification service to notify each Subscriber.`
-    -   [ ] Commit: `Implement publish function in Program service and Program controller.`
-    -   [ ] Commit: `Edit Product service methods to call notify after create/delete.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
+    -   [v] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
+    -   [v] Commit: `Implement notify function in Notification service to notify each Subscriber.`
+    -   [v] Commit: `Implement publish function in Program service and Program controller.`
+    -   [v] Commit: `Edit Product service methods to call notify after create/delete.`
+    -   [v] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
 
 ## Your Reflections
 This is the place for you to write reflections:
@@ -77,7 +77,17 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+1. In the Observer pattern diagram explained by the Head First Design Pattern book, Subscriber is defined as an interface. Explain based on your understanding of Observer design patterns, do we still need an interface (or trait in Rust) in this BambangShop case, or a single Model struct is enough?
+- Penggunaan interface Subscriber dalam design pattern Observer akan diperlukan jika kita memiliki Subscriber dengan berbagai jenis. Penggunaan interface akan memudahkan kita jika kita ingin menambahkan Subscriber jenis baru. Hal ini mengikuti Open-Closed Principle. Namun untuk kasus BambangShop saat ini penggunaan interface belum diperlukan karena seluruh Subscribersnya sejenis (berasal dari kelas yang sama)
 
+2. id in Program and url in Subscriber is intended to be unique. Explain based on your understanding, is using Vec (list) sufficient or using DashMap (map/dictionary) like we currently use is necessary for this case?
+
+- Menurut saya DashMap tetap lebih cocok digunakan. Hal ini dikarenakan DashMap menyimpan data dengan pasangan key dan value, dimana kita bisa mengakses data hanya dengan key. Hal ini dapat mempercepat dalam proses pencarian data, insertion, dan deletetion dibandingkan dengan menggunakan Vec dimana kita harus melakukan iterasi.
+
+3. When programming using Rust, we are enforced by rigorous compiler constraints to make a thread-safe program. In the case of the List of Subscribers (SUBSCRIBERS) static variable, we used the DashMap external library for thread safe HashMap. Explain based on your understanding of design patterns, do we still need DashMap or we can implement Singleton pattern instead?
+
+- Menurut saya menggunakan DashMap sudah lebih tepat dibandingkan dengan HashMap. Hal ini dikarenakan HashMap tidak dirancang untuk digunakan secara konkuren sehingga tanpa mekanisme konkurensi yang tepat, program dapat mengalami race condition atau deadlock sedangkan DashMap sudah dirancang untuk digunakan secara konkuren sehingga lebih aman digunakan oleh beberapa thread.
+- Penggunaan Singleton pattern juga tetap dibutuhkan untuk memastikan bahwa dashmap `SUBSCRIBERS` hanya ada 1. Hal ini untuk memastikan bahwa data hanya disimpan di dashmap tersebut dan program hanya mengakses serta mengedit dashmap tersebut
 #### Reflection Publisher-2
 
 #### Reflection Publisher-3

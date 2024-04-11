@@ -102,3 +102,14 @@ This is the place for you to write reflections:
 - Postman dapat membantu saya untuk melakukan test terhadap endpoint API saya apakah sudah mengembalikan response sesuai yang saya harapkan. Fitur Collection pada postman sangat membantu saya dalam meng-organize  beberapa request.
 
 #### Reflection Publisher-3
+1. Observer Pattern has two variations: Push model (publisher pushes data to subscribers) and Pull model (subscribers pull data from publisher). In this tutorial case, which variation of Observer Pattern that we use?
+
+- Pada kasus ini kita menggunakan push model karena jika terjadi  create, delete atau update pada suatu produk, maka seluruh subscriber yang berlangganan product_type tersebut akan dikirimkan notifikasi
+
+2. What are the advantages and disadvantages of using the other variation of Observer Pattern for this tutorial case? (example: if you answer Q1 with Push, then imagine if we used Pull)
+
+- Keuntungan pull methode: informasi subscriber tidak ter-expose oleh publisher. Kerugian pull methode: memperbesar potensi keterlambatan pembaruan karena subscriber harus secara aktif meminta pembaruan dari publisher
+
+3. Explain what will happen to the program if we decide to not use multi-threading in the notification process.
+
+- Proses notifikasi akan menjadi sangat lambat karena pengiriman notifikasi pada tiap-tiap subscriber akan dijalankan secara sinkronus.

@@ -89,5 +89,16 @@ This is the place for you to write reflections:
 - Menurut saya menggunakan DashMap sudah lebih tepat dibandingkan dengan HashMap. Hal ini dikarenakan HashMap tidak dirancang untuk digunakan secara konkuren sehingga tanpa mekanisme konkurensi yang tepat, program dapat mengalami race condition atau deadlock sedangkan DashMap sudah dirancang untuk digunakan secara konkuren sehingga lebih aman digunakan oleh beberapa thread.
 - Penggunaan Singleton pattern juga tetap dibutuhkan untuk memastikan bahwa dashmap `SUBSCRIBERS` hanya ada 1. Hal ini untuk memastikan bahwa data hanya disimpan di dashmap tersebut dan program hanya mengakses serta mengedit dashmap tersebut
 #### Reflection Publisher-2
+1. In the Model-View Controller (MVC) compound pattern, there is no “Service” and “Repository”. Model in MVC covers both data storage and business logic. Explain based on your understanding of design principles, why we need to separate “Service” and “Repository” from a Model?
+
+- Pemisahan service dan repository dibutuhkan untuk memenuhi Single Responsibility Principle (SRP). Service akan berfokus pada logika bisnis, yaitu mengolah data yang didapat dari repository sedangkan repository akan berfokus pada logika pengaksesan data di database
+
+2. What happens if we only use the Model? Explain your imagination on how the interactions between each model (Program, Subscriber, Notification) affect the code complexity for each model?
+
+- Jika demikian maka akan tercipta program yang memiliki coupling tinggi sehingga akan sulit untuk dimaintain dan sulit untuk diubah
+
+3. Have you explored more about Postman? Tell us how this tool helps you to test your current work. You might want to also list which features in Postman you are interested in or feel like it is helpful to help your Group Project or any of your future software engineering projects.
+
+- Postman dapat membantu saya untuk melakukan test terhadap endpoint API saya apakah sudah mengembalikan response sesuai yang saya harapkan. Fitur Collection pada postman sangat membantu saya dalam meng-organize  beberapa request.
 
 #### Reflection Publisher-3
